@@ -64,11 +64,11 @@ function getModel() {
     // the convolution operation that takes place in this layer.
     model.add(tf.layers.conv2d({
       inputShape: [IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS], // define dimensions of the input vectors (number of image channels also 1 dim)
-      kernelSize: 5, // 
-      filters: 8,
-      strides: 1,
-      activation: 'relu',
-      kernelInitializer: 'varianceScaling'
+      kernelSize: 5, // filter matrix (window) size <-- size 5x5
+      filters: 8, // number of filter that will be applied to the vector
+      strides: 1, // the moving step of filter window
+      activation: 'relu', // activation method, activate after convolution done (using Rectified Linear Unit: input <= 0 |-> output = 0; otherwise output = input)
+      kernelInitializer: 'varianceScaling', // initializer for model weight (init random value strategy)
     }));
   
     // The MaxPooling layer acts as a sort of downsampling using max values
